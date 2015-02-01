@@ -35,7 +35,7 @@ Query information about an option:
       strikePrice: 45);
     
     // Add the information we want to query about the option.
-    stockQuery.Add(Args.Option.Symbol, Args.Option.ImpliedVolatility, Args.Option.Delta);
+    optionQuery.Add(Args.Option.Symbol, Args.Option.ImpliedVolatility, Args.Option.Delta);
     
     // Execute the query against the TradeKing API.
     var result = api.Execute(optionQuery);
@@ -43,3 +43,14 @@ Query information about an option:
     // Print out one of the queried arguments.
     Console.WriteLine("Implied volatility: {0}", result[Args.Option.ImpliedVolatility]);
   
+Execute an arbitrary query and receive the response as a string:
+
+    // Pass the full query URI.
+    var response = api.Execute("https://api.tradeking.com/v1/market/ext/quotes.json?symbols=MSFT&fids=adp_100");
+    
+    // Or an alternative that does the same thing:
+    var parameters = new Dictionary<string, string> {
+        { "symbol", "MSFT" },
+        { "fids", "adp_100" },
+    };
+    var responseTwo = api.Execute("market/ext/quotes", parameters);
