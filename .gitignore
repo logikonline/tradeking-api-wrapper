@@ -1,0 +1,6 @@
+*.suo
+packages/
+TradeKingAPI/obj
+TradeKingAPI/bin
+TradeKingAPICmd/obj
+TradeKingAPICmd/bin
